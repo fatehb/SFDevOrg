@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: Checkout Branch
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.branchName }}
+         with:
+         ref: ${{ github.event.inputs.branchName }}
           
 #       - name: install npm
 #       - uses: actions/setuo-node@v3
