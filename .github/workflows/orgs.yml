@@ -21,8 +21,8 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branchName }}
           
-      - name: install npm
-      - uses: actions/setuo-node@v3
-        with:
-          node-version: 16
+#       - name: install npm
+#       - uses: actions/setuo-node@v3
+#         with:
+#           node-version: 16
         run: echo "action ran"
