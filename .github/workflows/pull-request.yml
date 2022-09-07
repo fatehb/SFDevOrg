@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: Post to a Slack channel
+       - run: echo "${{ secrets.SLACK_BOT_TOKEN }}" 
+       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.21.0
         with:
