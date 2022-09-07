@@ -16,4 +16,4 @@ jobs:
               "foo": "bar"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
