@@ -20,25 +20,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
         
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.18.0
-        with:
-          # For posting a rich message using Block Kit
-          payload: |
-            {
-              "text": "GitHub Action",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action Delivery"
-                  }
-                }
-              ]
-            }
+      - name: Send slack messege
+        uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-      
+            SLACK_WEBHOOK:${{ secrets.SLACK_WEBHOOK }}
+            SLACK_ICON: https://github.com/forcedotcom.png?size=48
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_USERNAME: gh-commit
+            SLACK_TITLE: This is a action call
+            SLACK_MESSAGE: "testing from github"
