@@ -23,9 +23,9 @@ jobs:
       - name: Send slack messege
         uses: rtCamp/action-slack-notify@v2
         env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_ICON: https://github.com/forcedotcom.png?size=48
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_USERNAME: gh-commit
-            SLACK_TITLE: This is a action call
-            SLACK_MESSAGE: "testing from github"
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_ICON: https://github.com/forcedotcom.png?size=48
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_USERNAME: gh-commit
+          SLACK_TITLE: This is a action call
+          SLACK_MESSAGE: "testing from github"
