@@ -1,11 +1,8 @@
 name: Slack Release Draft
 
-on:
+on: 
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '*/90 * * * *'
-  #release:
-    #types: [created]
+  - cron: '*/5 * * * *'
 
 jobs:
   build:
