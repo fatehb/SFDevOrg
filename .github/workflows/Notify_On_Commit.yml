@@ -19,6 +19,9 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
+      
+      - name: Get Draft Release Body
+        run: body=`gh release view --jsob body`
         
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
@@ -26,7 +29,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_MESSAGE: $body
           SLACK_TITLE: Post Title
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
