@@ -21,7 +21,7 @@ jobs:
         run: echo Hello, world!
       
       - name: Get Draft Release Body
-        run: body=`gh release view --jsob body`
+        run: body=`gh release view --json body`
         
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
