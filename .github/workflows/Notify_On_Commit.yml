@@ -26,7 +26,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         
         run: |
-          echo "::set-env name=draft_body::`gh release view --json body`"
+          echo "draft_body=`gh release view --json body`" >> $GITHUB_ENV
         
         #run: |
         #  draft_body=`gh release view --json body`
@@ -38,7 +38,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: ${{ steps.vars.outputs.draft_body }}
+          SLACK_MESSAGE: ${{ env.draft_body }}
           SLACK_TITLE: Release Draft
           SLACK_USERNAME: github
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
