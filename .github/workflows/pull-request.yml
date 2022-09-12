@@ -6,6 +6,14 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "${{ secrets.SLACK_BOT_TOKEN }}" 
+      - name: Get Draft Release Body
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        
+        run: 
+          echo "::set-env name=draft_body::`gh release view --json body`"
+        
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
@@ -13,7 +21,7 @@ jobs:
           # For posting a rich message using Block Kit
           payload: |
             {
-              "text": "GitHub Action",
+              "text": "Other GitHub Action",
               "blocks": [
                 {
                   "type": "section",
