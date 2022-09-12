@@ -21,6 +21,8 @@ jobs:
         run: echo Hello, world!
       
       - name: Get Draft Release Body
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: body=`gh release view --json body`
         
       - name: Slack Notification
