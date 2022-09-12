@@ -23,6 +23,8 @@ jobs:
       - name: Get Draft Release Body
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
         run: |
           body=`gh release view --json body`
           echo "::set-env name=body::$body"
