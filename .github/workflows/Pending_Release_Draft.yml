@@ -9,28 +9,33 @@ on:
 
 jobs:
   build:
-    name: Build release binary
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Get release
-        id: get_release
-        uses: fatehb/SFDevOrg@v1.0.0
+      - name: Run a one-line script
+        run: echo Hello, world!
+      
+      - name: Get Draft Release Body
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-
-      - name: Build binary
-        run: cargo build --release --verbose
-
-      - name: Upload release binary
-        uses: actions/upload-release-asset@v1.0.2
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        
+        run: |
+          echo "draft_body=`gh release view --json body`" >> $GITHUB_ENV
+        
+        #run: |
+        #  draft_body=`gh release view --json body`
+        #  echo "::set-env name=draft_body::$draft_body"
+        
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./target/release/my-widget
-          asset_name: my-widget
-          asset_content_type: application/octet-stream
-          
+          SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: ${{ env.draft_body }}
+          SLACK_TITLE: Release Draft
+          SLACK_USERNAME: github
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
