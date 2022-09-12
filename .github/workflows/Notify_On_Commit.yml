@@ -23,7 +23,9 @@ jobs:
       - name: Get Draft Release Body
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: body=`gh release view --json body`
+        run: |
+          body=`gh release view --json body`
+          echo "::set-env name=body::$body"
         
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
