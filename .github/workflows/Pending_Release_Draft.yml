@@ -36,6 +36,6 @@ jobs:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: ${{ env.draft_body }}
-          SLACK_TITLE: Release Draft
+          SLACK_TITLE: Release Draft (CRON JOB)
           SLACK_USERNAME: github
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
